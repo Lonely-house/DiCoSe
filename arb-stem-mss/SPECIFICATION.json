@@ -1,0 +1,42 @@
+{
+  "source_document": "判别式任意Stem控制.md",
+  "sha256": "d2fc0ebbd89d7644010bac756b7e07555ade1cee87ca45ae72c832b50f0614c8",
+  "implemented_phase": "DET",
+  "requirements": [
+    {
+      "id": "DET-01",
+      "spec_lines": "938-1026",
+      "requirement": "Real DiCoSe waveform U-Net; mixture and text query are the only model inputs; shared source output."
+    },
+    {
+      "id": "DET-02",
+      "spec_lines": "1028-1077",
+      "requirement": "Single-target plan A: residual is mixture minus prediction; no duplicate residual loss."
+    },
+    {
+      "id": "DATA-01",
+      "spec_lines": "1081-1122",
+      "requirement": "Triplet supervision with source and submix computed from actual selected stems."
+    },
+    {
+      "id": "LOSS-01",
+      "spec_lines": "1124-1148",
+      "requirement": "L1 plus multi-resolution STFT, with original MSE available as a comparison."
+    },
+    {
+      "id": "QUERY-01",
+      "spec_lines": "1150-1168",
+      "requirement": "Train real source-subset combinations before claiming multi-source text control."
+    },
+    {
+      "id": "NEXT-01",
+      "spec_lines": "1170-1223",
+      "requirement": "DIF/CD remain follow-up work; DET exposes query and feature interfaces."
+    }
+  ],
+  "source_corrections": [
+    "Original DiCoSe entrypoint is train_det.py; train_determination.py is provided as the requested project entrypoint.",
+    "Current MGE-LDM source condition mixes audio and text embeddings; do not copy paper-only audio-conditioning claims as current code facts."
+  ],
+  "claim_limit": "Numerical synthetic tests do not establish real music quality or open-vocabulary generalization."
+}

@@ -1,0 +1,54 @@
+# DiCoSe MSE objective with the same text-conditioned architecture as det_text.
+# This is a controlled loss baseline, not a claimed exact four-class result.
+model:
+  query_dim: 512
+  condition_dim: 512
+  query_adapter: true
+  unet:
+    in_channels: 1
+    out_channels: 1
+    channels: 256
+    patch_factor: 16
+    patch_blocks: 1
+    resnet_groups: 8
+    kernel_multiplier_downsample: 2
+    kernel_sizes_init: [1, 3, 7]
+    multipliers: [1, 2, 4, 4, 4, 4, 4]
+    factors: [4, 4, 4, 2, 2, 2]
+    num_blocks: [2, 2, 2, 2, 2, 2]
+    attentions: [false, false, false, true, true, true]
+    attention_heads: 8
+    attention_features: 128
+    attention_multiplier: 2
+    use_nearest_upsample: false
+    use_skip_scale: true
+    use_attention_bottleneck: true
+    use_context_time: false
+    context_channels: null
+audio:
+  sample_rate: 22050
+  segment_samples: 262144
+data:
+  train_manifest: artifacts/manifests/train.jsonl
+  validation_manifest: artifacts/manifests/validation.jsonl
+  embedding_cache: artifacts/text_embeddings.pt
+train:
+  seed: 42
+  epochs: 100
+  batch_size: 2
+  num_workers: 4
+  learning_rate: 0.0001
+  betas: [0.9, 0.99]
+  weight_decay: 0.0
+  device: auto
+  amp: false
+  grad_clip: 1.0
+  output_dir: runs/det_mse
+loss:
+  wave_type: mse
+  wave_weight: 1.0
+  mrstft_weight: 0.0
+  fft_sizes: [1024, 2048, 512]
+  hop_sizes: [256, 512, 128]
+  win_lengths: [1024, 2048, 512]
+  absence_weight: 0.0

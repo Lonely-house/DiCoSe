@@ -1,0 +1,38 @@
+{
+  "dicose": {
+    "repository": "https://github.com/Lonely-house/DiCoSe",
+    "upstream_repository": "https://github.com/Russell-Izadi-Bose/DiCoSe",
+    "commit": "a1dc0a41ad2b1829674a60ea74e74edfd1509083",
+    "files": {
+      "arb_stem_mss/vendor/dicose/modules.py": {
+        "sha256": "fd96ad3805675673bdb250139afeacd5829162bca24429b18ff264ea8f118f24",
+        "upstream_path": "audio_diffusion_pytorch_/modules.py",
+        "modified": false
+      },
+      "arb_stem_mss/vendor/dicose/utils.py": {
+        "sha256": "de82ad0f9aaf12b226cff42543451cf221ecfb021bcd4e06e4353644c86b7ade",
+        "upstream_path": "audio_diffusion_pytorch_/utils.py",
+        "modified": false
+      },
+      "arb_stem_mss/vendor/dicose/LICENSE": {
+        "sha256": "cb7b3fd0b524be01657235533a70c07e1150c5bbcca15ca90bec22780256198f",
+        "upstream_path": "LICENSE",
+        "modified": false
+      }
+    },
+    "initializer_change": "Minimal __init__.py imports UNet1d only; vendored source files unchanged."
+  },
+  "mge_ldm": {
+    "repository": "https://github.com/Lonely-house/MGE-LDM",
+    "commit": "e180d9a16e31a78afc6b40ca40cde60eae96382a",
+    "usage": "Triplet data formulation and source/submixture role semantics; no diffusion code or weights copied."
+  },
+  "adaptation": {
+    "model": "Pooled text vector -> optional MLP -> DiCoSe context_features global multi-layer scale/shift conditioning",
+    "output": "Single target waveform; complement computed as mixture-target",
+    "future_work": [
+      "Text-conditioned diffusion refinement",
+      "Consistency distillation"
+    ]
+  }
+}
