@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "baseline_dicose_commit": "a1dc0a41ad2b1829674a60ea74e74edfd1509083",
+  "baseline_mgeldm_commit": "e180d9a16e31a78afc6b40ca40cde60eae96382a",
+  "environment": {
+    "device": "CPU",
+    "python": "3.12",
+    "torch": "2.15.0+cpu",
+    "numpy": "2.5.4"
+  },
+  "synthetic_checks": [
+    "deterministic backward gradients finite",
+    "EDM backward gradients finite",
+    "deterministic weights frozen across refiner optimization",
+    "five independent queries with finite sampling outputs",
+    "negative-query manifest and zero padding",
+    "checkpoint roundtrip",
+    "det train -> refiner train -> two-query CLI inference",
+    "oracle correction recovers target at 1, 2 and 7 evaluations",
+    "refiner sigma_data=0.25 override saved; zero/negative scale rejected",
+    "training settings saved in checkpoint"
+  ],
+  "api_checks": [
+    "compileall",
+    "CLAP export CLI help",
+    "CLAP signatures checked against official source"
+  ],
+  "not_run": [
+    "real CLAP checkpoint load/encoding",
+    "real music dataset training",
+    "original DiCoSe training/evaluation",
+    "MGE-LDM training/evaluation",
+    "open-category generalization/quality benchmarks",
+    "consistency distillation"
+  ],
+  "quality_claim": "none; synthetic numeric/interface fixtures are not language or music evaluation"
+}
