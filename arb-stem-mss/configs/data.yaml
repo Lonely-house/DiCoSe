@@ -1,0 +1,40 @@
+# Run from arb-stem-mss. Dataset roots resolve against its parent mss-combine,
+# or --workspace-root. output_dir resolves against this project root.
+seed: 42
+output_dir: artifacts/manifests
+require_nonempty_splits: true
+datasets:
+  musdb18hq:
+    type: musdb18hq
+    enabled: true
+    root: datasets/MUSDB18HQ
+    # Official test remains test; stable song hash splits official train only.
+    validation_fraction: 0.1
+    split_file: null
+  moisesdb:
+    type: moisesdb
+    enabled: true
+    # Change to datasets/MoisesDB/moisesdb_v0.1 when an extra wrapper exists.
+    root: datasets/MoisesDB
+    split_group: song
+    # For artist-disjoint splits: split_group: artist, and set artist_field to
+    # an actual string metadata key (dot-separated nested keys supported).
+    artist_field: artist
+    fractions: {train: 0.8, validation: 0.1, test: 0.1}
+    # JSON map canonical song_id -> train/validation/test; require all songs.
+    split_file: null
+  slakh2100:
+    type: slakh2100
+    enabled: false
+    root: /data/work_backup/zixuanzhang/audio/MGE-LDM/datasets/slakh2100
+    # Point to the directory directly containing train/validation/test.
+    split_file: null
+queries:
+  # All single-label queries are always emitted. Every label selects all tracks
+  # carrying it, and optional groups select unions of complete label groups.
+  group_queries_per_song: 2
+  max_group_size: 3
+  # Keep zero unless coarse-label absence is appropriate for the experiment.
+  negative_queries_per_song: 0
+  label_map:
+    strings (continued): strings

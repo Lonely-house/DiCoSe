@@ -1,0 +1,153 @@
+{
+  "validation_date": "2026-11-16",
+  "scope": "Synthetic CPU engineering reproduction; real DiCoSe UNet class with reduced smoke configuration",
+  "environment": {
+    "python": "3.12.14",
+    "device": "cpu",
+    "packages": {
+      "torch": "2.15.0+cpu",
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "soundfile": "0.14.0",
+      "PyYAML": "6.0.3",
+      "einops": "0.8.2",
+      "einops-exts": "0.0.4",
+      "pytest": "9.2.0",
+      "typing-extensions": "4.16.0"
+    }
+  },
+  "pytest": {
+    "command": "python -m pytest -q --junitxml=artifacts/validation/pytest.xml",
+    "tests": 31,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 52.526
+  },
+  "workflow": {
+    "command": "python scripts/smoke_reproduction.py",
+    "status": "passed",
+    "true_dicose_unet": true,
+    "encoder_is_mock": true,
+    "events": [
+      {
+        "script": "prepare_data.py",
+        "expected_rejection": false,
+        "status": "passed"
+      },
+      {
+        "script": "cache_text_embeddings.py",
+        "expected_rejection": false,
+        "status": "passed"
+      },
+      {
+        "script": "train_determination.py",
+        "expected_rejection": true,
+        "status": "passed"
+      },
+      {
+        "script": "train_determination.py",
+        "expected_rejection": false,
+        "status": "passed"
+      },
+      {
+        "script": "train_determination.py",
+        "expected_rejection": false,
+        "status": "passed"
+      },
+      {
+        "script": "train_determination.py",
+        "expected_rejection": false,
+        "status": "passed"
+      },
+      {
+        "check": "epoch-boundary resume exactly matches uninterrupted CPU parameters",
+        "status": "passed"
+      },
+      {
+        "script": "train_determination.py",
+        "expected_rejection": true,
+        "status": "passed"
+      },
+      {
+        "script": "evaluate.py",
+        "expected_rejection": true,
+        "status": "passed"
+      },
+      {
+        "script": "train_determination.py",
+        "expected_rejection": false,
+        "status": "passed"
+      },
+      {
+        "script": "train_determination.py",
+        "expected_rejection": true,
+        "status": "passed"
+      },
+      {
+        "script": "evaluate.py",
+        "expected_rejection": false,
+        "status": "passed"
+      },
+      {
+        "script": "separate.py",
+        "expected_rejection": false,
+        "status": "passed"
+      }
+    ]
+  },
+  "provenance_checks": {
+    "vendored_dicose_files_match_pinned_commit": true,
+    "source_document_sha256": "d2fc0ebbd89d7644010bac756b7e07555ade1cee87ca45ae72c832b50f0614c8"
+  },
+  "source_sha256": {
+    "SPECIFICATION.json": "ffd0e771c5a4be06e74bdf6cade781a54294fa264f54110a3bb9190af972c611",
+    "UPSTREAM.json": "82df2550c1c4d9160528fa07ec447a5c4b8701dc21ddd132126a90ba428045f4",
+    "arb_stem_mss/__init__.py": "00445959b96ebd4878d1643d2cc5158e5ed076950b772330fbcefb93ac6ea2d7",
+    "arb_stem_mss/config.py": "9fcae5d27a7250150ca6a61d395bf970ba45f74e62400c88c0b36ab59744bbf8",
+    "arb_stem_mss/data.py": "a54efb40200aba4e791dbfdbb4755ae140a4dcf79e4d31ced65f734fe5a8afda",
+    "arb_stem_mss/engine.py": "0e3dc2fe79ba9230e284ad9ea4e81d3c5c2c82b7364f1aaff9b9e45057f878e7",
+    "arb_stem_mss/inference.py": "afb9113bf3c56e7e125a8907f0e20041bd38e828d1bbfd5919d9b8432f69be29",
+    "arb_stem_mss/losses.py": "a2893679b52d210fde74141dcf744593b7756caeff107d6c2a6385f0ef52b609",
+    "arb_stem_mss/metrics.py": "538221f5372a429953535dca8246671523197e1a8b44675e4bcae6e7b382d5ac",
+    "arb_stem_mss/model.py": "c6741f31ad1b5f215ea2319b190e1c24cad38da9db67dfbef35c123776c638c3",
+    "arb_stem_mss/text.py": "9eea85f3f873f7f4e7214465205a8d0a378b5595942b1042aed5c5e0f21d793c",
+    "arb_stem_mss/vendor/dicose/__init__.py": "cfead9f8ba79870e8df9f0ed675d25a0e1cce2512a686554ab32c2c605c956b1",
+    "arb_stem_mss/vendor/dicose/modules.py": "fd96ad3805675673bdb250139afeacd5829162bca24429b18ff264ea8f118f24",
+    "arb_stem_mss/vendor/dicose/utils.py": "de82ad0f9aaf12b226cff42543451cf221ecfb021bcd4e06e4353644c86b7ade",
+    "cache_text_embeddings.py": "cdadae53e3c1fe7fd0de87522ccda5d3d1810affc833c08edd4087ea11765c7a",
+    "configs/data.yaml": "2d830ee1ff775bd8074bdf8f87e287ae1fb37e75892b34dce7704050dc291fa9",
+    "configs/det_mse.yaml": "bccefb896c49101eb6dc7fefca0ac46942273dc42232c6b42cb87f7800621ff3",
+    "configs/det_text.yaml": "87fb365e7e1b1b3baf53c52a42cede9bb1eec34a2bd0cb1d51b58f59e8800346",
+    "configs/smoke.yaml": "a31147fc22464ce563198bac7946bf50998152ab994144ced7ca37275416843a",
+    "evaluate.py": "3cdc2174c447ff620ed727e2d4247abcea954415b198a2f7ceb0371e4f131b8c",
+    "prepare_data.py": "a269f733772afce94beb4c62050bc7bf84499d0d634f8fe2b48f5df130d2706b",
+    "pyproject.toml": "2ccf8aea1ca36b1d70907fd6f7a0e7ab8a90cbc2d83b57253b91d6238de220a3",
+    "requirements-tested-cpu.txt": "7f3ddbaabde065f85ab6a356a7d5c94ddded91d3038efdccd5a7c7f56aa90d51",
+    "scripts/doctor.py": "74bd22d7424d40c29be2b099330a1af47bfdf47c20c522f54084f766ed500c77",
+    "scripts/smoke_reproduction.py": "a1ba9284edb530d6a7eac3e658f464e0be00bc88f8b8670eee13d4eacb252211",
+    "separate.py": "aba0cd829412215da652a5467f6bcb9ea10f1a2f98ce6fdfb2e4ab1a78038fea",
+    "tests/conftest.py": "d1eade272143eff370c56caea1aff3ce086373c93683487e780cd1e73576f925",
+    "tests/test_data_contract.py": "19b0b36f13a188a591b770fc2cd24bf616506964872fbb2995be73481c0d6c8d",
+    "tests/test_losses_inference.py": "1a0428f1a3a563cacd003cd7f928d1c75db7372b41abc502bcbd67d55f2f3235",
+    "tests/test_model.py": "5cf78633a3c89a3ccd2436e107f39395ca5f5bdf1a7d084959b0bd13821185c8",
+    "tests/test_prepare.py": "a8b32247a72833f495b882da37166b7da694b1a950f0582a54f7c1b2d7d0181d",
+    "tests/test_text_cache.py": "63e4d62eda21a877b6b347b7c8e6c821bd77f94d79e75d60b38db84799242f1f",
+    "tests/test_training_guards.py": "1be086a2c3aa013901667515fbf02984b177d492f1df8a66b5bb0f2a828bfda1",
+    "tests/test_workflow.py": "f0287da968442d33c3bc2878caa970fe330d9c0f7c908b8bf340994aa1fe37b7",
+    "train_det.py": "ea18a6548b8ac8279d037c3214b55366a78d7c7f552ea902d3f685ab29aacfc0",
+    "train_determination.py": "bf8f8e07e51f8a8037d66472cf9e2e92fea07ba85a292b6a3582483113c1df43"
+  },
+  "not_executed": [
+    "user server filesystem or real datasets",
+    "real CLAP checkpoint loading and semantic text encoding",
+    "full-size DET training on real music",
+    "CUDA or multi-GPU validation",
+    "open-category generalization/music-quality benchmarks",
+    "public upstream checkpoint initialization"
+  ],
+  "not_implemented": [
+    "text diffusion refinement training",
+    "consistency distillation"
+  ],
+  "quality_claim": "None. Mock embeddings and generated tones cannot establish language semantics or separation quality."
+}
